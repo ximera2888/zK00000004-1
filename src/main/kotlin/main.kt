@@ -8,8 +8,8 @@ val commissionLimitMastercard=75000
 val commissionMinMastercard=300
 var sumDay:Int=0;
 fun main(){
-    var sum=100_000
-    var sumMonth=80_000
+    var sum=45000
+    var sumMonth=50_000
     if (sum+sumDay<limitDay){
         if (sum+sumMonth<limitMonth)
         println("Комиссия составит: "+commission("mastercard",sum=sum, sumMonth = sumMonth))
@@ -22,7 +22,9 @@ fun commission(typeCard:String="mir",sumMonth:Int=0, sum:Int):Int{
    return     when (typeCard){
         "VKPay"->0
         "visa", "mir"->if(sum*commissionVisa<minCommissionVisa) minCommissionVisa else (sum*commissionVisa).toInt()
-        "mastercard","maestro"-> if (sum+sumMonth<commissionLimitMastercard || sum+sumMonth>commissionMinMastercard) 0 else if(sumMonth>=commissionLimitMastercard) (sum*commissionMastercard).toInt() else {
+        "mastercard","maestro"-> if (sum+sumMonth<commissionLimitMastercard && (sum>commissionMinMastercard)) 0 else
+            if(sumMonth>=commissionLimitMastercard || sum<commissionMinMastercard) (sum*commissionMastercard+commissionFixMastercard).toInt()
+            else {
             ((sum+sumMonth-commissionLimitMastercard)*commissionMastercard+commissionFixMastercard).toInt() }
 
         else->0
