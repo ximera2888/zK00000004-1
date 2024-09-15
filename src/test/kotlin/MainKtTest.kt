@@ -47,7 +47,6 @@ class MainKtTest {
         assertEquals(0,result)
     }
 
-
     @Test
     fun commissionvkMastercardMax() {
         val sum=45_000

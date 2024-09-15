@@ -6,7 +6,7 @@ val commissionMastercard=0.006
 val commissionFixMastercard=20
 val commissionLimitMastercard=75000
 val commissionMinMastercard=300
-var sumDay:Int=0;
+var sumDay:Int=0
 fun main(){
     var sum=45000
     var sumMonth=50_000
